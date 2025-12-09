@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Vista lista de componentes -->
+    <record id="pc_component_list" model="ir.ui.view">
+        <field name="name">pc.component.list</field>
+        <field name="model">pc.component</field>
+        <field name="arch" type="xml">
+            <list string="Componentes">
+                <field name="name"/>
+                <field name="price"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Vista formulario de componentes -->
+    <record id="pc_component_form" model="ir.ui.view">
+        <field name="name">pc.component.form</field>
+        <field name="model">pc.component</field>
+        <field name="arch" type="xml">
+            <form string="Componente">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="specs"/>
+                        <field name="price"/>
+                        <field name="currency_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Acción de ventana para componentes -->
+    <record id="action_pc_component" model="ir.actions.act_window">
+        <field name="name">Componentes</field>
+        <field name="res_model">pc.component</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
