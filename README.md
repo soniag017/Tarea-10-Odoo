@@ -1,7 +1,6 @@
 # Tarea-10-Odoo
 1. Descripción del módulo
 Este módulo permite gestionar los ordenadores de una empresa, sus componentes, el usuario que los utiliza y algunas incidencias. También calcula automáticamente el precio total del ordenador en función de los componentes que tiene.
-El objetivo es practicar la creación de modelos, relaciones, restricciones, vistas y permisos en Odoo.
 
 2. Estructura del módulo
 El módulo está organizado así:
@@ -26,11 +25,8 @@ Este modelo guarda la información de un componente usado en un ordenador.
 Campos:
 
 name: nombre del componente
-
 specs: especificaciones
-
 price: precio
-
 currency_id: moneda usada
 
 Se usa en una relación Many2many dentro del modelo del ordenador.
@@ -55,8 +51,7 @@ def _check_last_mod(self):
             raise ValidationError("La fecha no puede ser futura")
 
 
-Esta función evita que se introduzcan fechas que aún no han ocurrido.
-
+Esta función evita que se introduzcan fechas futuras
 4.2. Cálculo del precio total
 @api.depends("components_ids.price")
 def _compute_total(self):
@@ -64,7 +59,7 @@ def _compute_total(self):
         record.total_price = sum(record.components_ids.mapped("price"))
 
 
-Cada vez que cambian los componentes del ordenador, este método suma sus precios y actualiza el precio total.
+Cada vez que cambian los componentes del ordenador, suma sus precios y actualiza el precio total.
 
 5. Seguridad
 El archivo ir.model.access.csv define los permisos para que los usuarios internos de Odoo puedan crear, modificar, leer y borrar ordenadores y componentes.
@@ -88,13 +83,11 @@ Cada uno abre su propia acción con las vistas correspondientes.
 Copiar la carpeta del módulo dentro de los addons.
 Reiniciar Odoo.
 Activar el modo desarrollador.
-
 Actualizar la lista de aplicaciones.
-
 Instalar el módulo.
 
 9. Cómo usar el módulo
-Para crear un componente: ir a Gestión PC → Componentes → Crear.
-Para crear un ordenador: ir a Gestión PC → Ordenadores → Crear.
-Al añadir componentes a un ordenador, el precio total se calcula automáticamente.
-La fecha no puede ser futura.
+Para crear un componente: ir a Gestión PC,componentes,crear.
+Para crear un ordenador: ir a Gestión PC,ordenadores,crear.
+Al añadir componentes a un ordenador el precio total se calcula automáticamente.
+
